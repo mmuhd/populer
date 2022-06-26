@@ -23,9 +23,10 @@ class TopicController extends Controller
      */
     public function index()
     {
-         $topics = Topic::with('user')->with('category')
-         ->with('upvotes')->with('reviews')->paginate(10)->all();
+         // $topics = Topic::with('user')->with('category')
+         // ->with('upvotes')->with('reviews')->paginate(10)->all();
         //$topics = Topic::paginate(10)->all();
+        $topics = Category::with('topics.upvotes')->with('topics.reviews')->with('topics.user')->paginate(3)->all()->get()->sortByDesc('topics.upvotes');
         //dd($topics);
         return view('homepage', compact('topics'));
     }
@@ -185,18 +186,20 @@ class TopicController extends Controller
 
     public function addReview(Request $request)
     {
+
+        //dd($request->all());
         $data = $request->validate([
-            'topic_id' => 'required|integer',
+            'topic_id' => 'required|string',
             'body' => 'min:10|max:1000|string'
         ]);
 
         Review::create([
             'user_id' => currentUserId(),
-            'topic_id' => $request->topics_id,
+            'topic_id' => $data['topic_id'],
             'body' => $data['body'],
        ]);
 
-        $topics = Topic::find($request->topics_id);
+        $topics = Topic::find($request->topic_id);
 
         $msg = $topics->name . ' Was Reviewed By ' . currentUser()->name;
         $topics->user->notify(new UserNotifications($msg));

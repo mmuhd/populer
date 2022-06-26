@@ -1,15 +1,16 @@
 
-
-    <div id="timeline" class="mt-2 w-full bg-gray-200 p-8 rounded flex-col">
+    @forelse($topics as $topics)
+    <div id="timeline" class="mt-2 mb-4 w-full bg-gray-200 p-2 lg:p-10 xl:p-10 md:p-10 rounded flex-col">
+        <h2 class="mb-6 text-indigo-500 hover:text-indigo-300"><u>Top 3: {{$topics->name}}</u></h2>
 
         <!-- single product start -->
 
-        @forelse($topics as $top)
+        @foreach($topics->topics as $top)
         <ul class="shadow-md divide-y-2 divide-gray-200 mb-4 flex flex-col rounded-md">
             <li class="hover:bg-gray-100 first:rounded-t-md last:rounded-b-md flex bg-white">
                 <a class="flex-auto p-3 no-underline flex space-x-4" href="/app/{{$top->slug}}">
                     <div class="sm:w-20 sm:h-20 w-12 h-12 flex-shrink-0">
-                        <img class="w-full max-h-full object-contain" src="{{asset(Storage::url('')).'/'.$top->thumbnail}}">
+                        <img class="w-full max-h-full object-contain" src="{{asset('storage/' .$top->thumbnail) }}">
                     </div>
                     <div class="flex flex-col">
                         <h2 class="font-bold" data-score="0.23645480586078318">{{$top->name}}</h2>
@@ -28,7 +29,7 @@
                                         <svg class="stroke-current" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" version="1.1" width="14" viewBox="0 0 24 24" height="14">
                                         <path style="stroke-width: 2; fill: none" d="M 21.99,4 C 21.99,2.9 21.1,2 20,2 H 4 C 2.9,2 2,2.9 2,4 v 12 c 0,1.1 0.9,2 2,2 h 14 l 4,4 z"></path>
                                         </svg>
-                                        <span>{{count($top->reviews) ?? '0'}}</span>
+                                        <span><strong>{{count($top->reviews) ?? '0'}}</strong></span>
                                     </span>
                                 </div>
                             </div>
@@ -50,20 +51,21 @@
                                 </span>
                                 <span class="group-hover:flex flex text-xs hidden leading-4">Populer!</span>
                             </div>
-                            <span class="upvotes-count">{{count($top->upvotes) ?? '0'}}</span>
+                            <span class="upvotes-count"><strong>{{count($top->upvotes) ?? '0'}}</strong></span>
                         </button>
                     </form>
                 </div>
             </li>
         </li>
     </ul>
+     @endforeach   
         
-        @empty
-        <p>Nothing here right now.</p>
-
-            
-        @endforelse
 
          <!-- single product End -->
 
     </div>
+    @empty
+    <p>Nothing here right now.</p>
+
+            
+    @endforelse

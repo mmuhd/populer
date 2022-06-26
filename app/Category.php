@@ -10,7 +10,7 @@ class Category extends Model
         'name', 'user_id', 'slug'
     ];
 
-    public function tipics()
+    public function topics()
     {
         return $this->hasMany('App\Topic');
     }

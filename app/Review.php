@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
 {
-	protected $guarded = [];
+	protected $fillable = [
+        'topic_id', 'user_id', 'body'
+    ];
 	
     public function topic()
     {

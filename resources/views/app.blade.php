@@ -9,7 +9,7 @@
                         <div class="flex-auto p-3 no-underline flex space-x-4">
                             <!-- Logo-->
                             <div class="sm:w-20 sm:h-20 w-12 h-12 flex-shrink-0">
-                                <img class="w-full max-h-full object-contain" src="/{{$topics->thumbnail}}?ref=populer">
+                                <img class="w-full max-h-full object-contain" src="{{asset('storage/' .$topics->thumbnail) }}">
                             </div>
                             <div class="flex flex-col flex-auto space-y-2">
                                 <div class="flex space-x-2">
@@ -24,9 +24,10 @@
                                     </div>
                                     <!-- Upvote button-->
                                     <form action="/app/upvote/{{$topics->id}}" method="post" onsubmit="">
-                                        <button class="sm:w-16 hover:bg-gray-100  upvote-btn group w-12" type="submit" id="upvoteButton-62a9c76fed8fdc00174a91e8" title="">
+                                            @csrf
+                                        <button class="sm:w-16 hover:bg-gray-100  upvote-btn group w-12" type="submit" id="upvote" title="">
                                             @auth
-                                            {{currentUser()->checkIfUserUpvoted($topics) ? 'Upvoted' : 'Upvote'}}
+                                           <span class="text-green-600"><strong> {{currentUser()->checkIfUserUpvoted($topics) ? 'Upvoted' : 'Upvote'}} </strong></span>
                                             @endauth
                                             <div class="h-8 flex justify-center items-center">
                                                 <span class="upvote-symbol group-hover:hidden h-6 flex m-2">
@@ -39,7 +40,7 @@
                                                 </span>
                                                 <span class="group-hover:flex flex text-xs hidden leading-4">Populer!</span>
                                             </div>
-                                            <span class="upvotes-count">{{count($topics->upvotes) ?? '0'}}</span>
+                                            <span class="upvotes-count"><strong>{{count($topics->upvotes) ?? '0'}}</strong></span>
                                         </button>
                                     </form>
                                 </div>
@@ -56,14 +57,14 @@
                                 </div>
                                 <!-- Open website + Share-->
                                 <div class="flex pt-2 flex-start items-start flex-wrap">
-                                    <a class="btn btn-primary text-xs sm:text-sm mr-2" href="{{$topics->website}}?ref=populer" target="_blank" rel="noopener">Open website</a>
-                                    <a class="btn btn-secondary text-xs sm:text-sm" href="https://twitter.com/intent/tweet?url=https://populer.com.ng/app/{{$topics->slug}}&amp;text=Wow%2C%20this%20is%20a%20popular%20topic%20that%20%3A%0A%0A%F0%9F%A4%98%20NoCode%20Subscription%20Billing%20with%20Stripe%2C%20by%20%40Matthew_Reid%0A%0A(via%20%40mysideprojectr1)" target="_blank" rel="noopener">Share on Twitter</a>
+                                    <a class="inline-flex items-end w-full px-3 py-2 m-1 text-sm font-medium leading-4 text-white bg-indigo-600 md:px-3 md:w-auto md:rounded-full lg:px-5 hover:bg-indigo-500 focus:outline-none md:focus:ring-2 focus:ring-0 focus:ring-offset-2 focus:ring-indigo-600" href="{{$topics->website}}?ref=populer" target="_blank" rel="noopener">Open website</a>
+                                    <a class="inline-flex items-end w-full px-3 py-2 m-1 text-sm font-medium leading-4 text-white bg-blue-600 md:px-3 md:w-auto md:rounded-full lg:px-5 hover:bg-blue-500 focus:outline-none md:focus:ring-2 focus:ring-0 focus:ring-offset-2 focus:ring-blue-600" href="https://twitter.com/intent/tweet?url=https://populer.com.ng/app/{{$topics->slug}}&amp;text=Hey%2C%20Just%20upvoted%20a%20popular%20topic%20%20%3A%0A%0A%F0%9F%A4%98%20{{$topics->name}}%2C%20%0A%0A(via%20%40Populer_Ng)" target="_blank" rel="noopener">Share on Twitter</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="px-4 py-4 flex justify-center items-center" style="max-height: 300px">
-                        <img class="object-contain" src="/{{$topics->screenshot}}" style="max-height: 268px">
+                        <img class="object-contain" src="{{asset('storage/' .$topics->screenshot) }}" style="max-height: 268px">
                     </div>
                     <div class="sm:p-4 p-2">
                         <h3 class="text-lg font-bold mb-2">Description</h3>
@@ -80,11 +81,12 @@
                         @csrf
                         <div class="sm:flex-row sm:space-y-0 sm:space-x-4 flex flex-col space-y-2 items-start">
                             <label class="flex-auto flex flex-col items-stretch self-stretch space-y-1">
-                                <textarea name="content" required="required" maxlength="102400" placeholder="What do you think of this Topic?">
-                                </textarea>
+                                <textarea name="body" required="required" maxlength="102400" placeholder="What do you think of this Topic?"></textarea>
+                                <input type="text" value="{{$topics->id}}" name="topic_id" hidden>
                             </label>
-                            <button class="btn btn-primary text-sm" type="submit">Send</button>
+
                         </div>
+                        <button class="inline-flex items-end w-full px-2 py-2 m-2 text-sm text-white bg-indigo-600 md:px-2 md:w-auto rounded lg:px-5 hover:bg-indigo-500 focus:outline-none md:focus:ring-2 focus:ring-0 focus:ring-offset-2 focus:ring-indigo-600" type="submit">Send</button>
                     </form>
                     @error('topics_id')
                     {{$message}}

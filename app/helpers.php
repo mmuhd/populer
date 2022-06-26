@@ -39,13 +39,13 @@ function imageresize($width, $image, $subfolder='')
                 $filename        = pathinfo($filenameWithExt, PATHINFO_FILENAME);
                 $extension       = $image->getClientOriginalExtension();
                 $fileNameToStore = $filename . '_' . time() . '.' . $extension;
-                $dir             = storage_path('/');
+                $dir             = storage_path('/public');
 
                 if(!file_exists($dir))
                 {
                     mkdir($dir, 0777, true);
                 }
-                $path = $image->storeAs('/', $fileNameToStore);    
+                $path = $image->storeAs('/public', $fileNameToStore);    
 
     return $fileNameToStore;
 }
