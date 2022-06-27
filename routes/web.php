@@ -27,6 +27,7 @@ Route::get('/', 'TopicController@index')->name('home');
 Route::get('/app', 'TopicController@show');
 Route::get('/app/{topics:slug}', 'TopicController@show')->name('app');
 Route::get('/category/{category:name}', 'CategoryController@show')->name('category');
+Route::get('/category_view/{category:id}', 'CategoryController@view')->name('category_view');
 Route::get('/search', 'TopicController@search')->name('search');
 
 

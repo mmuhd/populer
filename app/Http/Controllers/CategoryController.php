@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use App\Topic;
 
 class CategoryController extends Controller
 {
@@ -15,6 +16,18 @@ class CategoryController extends Controller
     public function index()
     {
         //
+
+    }
+
+    public function view($id)
+    {
+        //
+         $topics = Topic::where('category_id', $id)->with('user')->with('category')
+          ->with('upvotes')->with('reviews')->get()->sortByDesc('upvotes');
+ 
+        //$categories = Category::where('id', $id)->with('topics.upvotes')->with('topics.reviews')->with('topics.user')->get();
+        
+        return view('category_home', compact('topics'));
 
     }
 
@@ -76,6 +89,11 @@ class CategoryController extends Controller
     public function edit($id)
     {
         //
+         // $topics = Topic::where('category_id', $id)->with('user')->with('category')
+        //   ->with('upvotes')->with('reviews')->get()->sortBy(function($topics)
+        //     {
+        //         return $topics->upvotes->count();
+        //     }); 
     }
 
     /**

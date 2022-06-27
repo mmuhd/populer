@@ -1,7 +1,7 @@
 
     @forelse($topics as $topics)
     <div id="timeline" class="mt-2 mb-4 w-full bg-gray-200 p-2 lg:p-10 xl:p-10 md:p-10 rounded flex-col">
-        <h2 class="mb-6 text-indigo-500 hover:text-indigo-300"><u>Top 3: {{$topics->name}}</u></h2>
+        <h2 class="mb-6 text-indigo-500 hover:text-indigo-300"><a href="/category_view/{{$topics->id}}"><u>Top 3: {{$topics->name}}</u></a></h2>
 
         <!-- single product start -->
 
@@ -10,7 +10,7 @@
             <li class="hover:bg-gray-100 first:rounded-t-md last:rounded-b-md flex bg-white">
                 <a class="flex-auto p-3 no-underline flex space-x-4" href="/app/{{$top->slug}}">
                     <div class="sm:w-20 sm:h-20 w-12 h-12 flex-shrink-0">
-                        <img class="w-full max-h-full object-contain" src="{{asset('storage/' .$top->thumbnail) }}">
+                        <img class="w-full max-h-full object-contain" src="{{asset('storage/' .$top->thumbnail) }}" alt="topic thumbnail">
                     </div>
                     <div class="flex flex-col">
                         <h2 class="font-bold" data-score="0.23645480586078318">{{$top->name}}</h2>
@@ -18,7 +18,7 @@
                         <div class="sm:flex-row sm:space-y-0 sm:space-x-4 flex flex-col mt-2 space-y-1">
                             <div class="text-xs space-x-2 flex">
                                 <div class="flex space-x-2 items-center">
-                                    <img class="w-4 h-4 rounded-full shadow" src="https://www.gravatar.com/avatar/b722e5b6f55523aef840f835e83fa14c?d=identicon">
+                                    <img class="w-4 h-4 rounded-full shadow" src="https://www.gravatar.com/avatar/b722e5b6f55523aef840f835e83fa14c?d=identicon" alt="user avatar">
                                     <div class="font-bold">{{$top->user->name ?? ''}}</div>
                                 </div>
                             </div>

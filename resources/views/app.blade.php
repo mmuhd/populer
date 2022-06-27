@@ -9,7 +9,7 @@
                         <div class="flex-auto p-3 no-underline flex space-x-4">
                             <!-- Logo-->
                             <div class="sm:w-20 sm:h-20 w-12 h-12 flex-shrink-0">
-                                <img class="w-full max-h-full object-contain" src="{{asset('storage/' .$topics->thumbnail) }}">
+                                <img class="w-full max-h-full object-contain" src="{{asset('storage/' .$topics->thumbnail) }}" alt="topic thumbnail">
                             </div>
                             <div class="flex flex-col flex-auto space-y-2">
                                 <div class="flex space-x-2">
@@ -48,11 +48,12 @@
                                 <div class="flex space-x-4 items-center">
                                     <div class="text-xs">
                                         <div class="flex space-x-2 items-center">
-                                            <img class="w-4 h-4 rounded-full shadow" src="https://www.gravatar.com/avatar/b722e5b6f55523aef840f835e83fa14c?d=identicon"><div class="font-bold">{{$topics->user->name ?? ''}}</div>
+                                            <img class="w-4 h-4 rounded-full shadow" src="https://www.gravatar.com/avatar/b722e5b6f55523aef840f835e83fa14c?d=identicon" alt="user avatar"><div class="font-bold">{{$topics->user->name ?? ''}}</div>
                                         </div>
                                     </div>
                                     <div class="text-xs text-gray-600">{{$topics->created_at->diffForHumans()}}</div>
                                     <div class="flex space-x-2 text-xs text-gray-600">
+                                        {{$topics->category->name ?? ''}}
                                     </div>
                                 </div>
                                 <!-- Open website + Share-->
@@ -64,7 +65,7 @@
                         </div>
                     </div>
                     <div class="px-4 py-4 flex justify-center items-center" style="max-height: 300px">
-                        <img class="object-contain" src="{{asset('storage/' .$topics->screenshot) }}" style="max-height: 268px">
+                        <img class="object-contain" src="{{asset('storage/' .$topics->screenshot) }}" style="max-height: 268px" alt="topic screenshot">
                     </div>
                     <div class="sm:p-4 p-2">
                         <h3 class="text-lg font-bold mb-2">Description</h3>
@@ -109,7 +110,7 @@
                             <li class="my-4">
                                 <div class="flex flex-col text-sm space-y-1">
                                     <div class="flex space-x-2 items-center">
-                                        <img class="w-4 h-4 rounded-full shadow" src="https://www.gravatar.com/avatar/b722e5b6f55523aef840f835e83fa14c?d=identicon">
+                                        <img class="w-4 h-4 rounded-full shadow" src="https://www.gravatar.com/avatar/b722e5b6f55523aef840f835e83fa14c?d=identicon" alt="user avatar">
                                         <div class="font-bold">{{$review->user->name}}</div>
                                     </div>
                                     <div data-score="0.014622512546485894">

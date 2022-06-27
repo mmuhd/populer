@@ -9,7 +9,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Populer Homepage</title>
+    <title>Populer - Most Popular Topics in Nigeria!</title>
     <!-- PWA  -->
 	<meta name="theme-color" content="#6777ef"/>
 	<link rel="apple-touch-icon" href="{{ asset('favicon-32x32.png') }}">
