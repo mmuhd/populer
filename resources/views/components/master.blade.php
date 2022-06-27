@@ -10,7 +10,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Populer Homepage</title>
-
+    <!-- PWA  -->
+	<meta name="theme-color" content="#6777ef"/>
+	<link rel="apple-touch-icon" href="{{ asset('favicon-32x32.png') }}">
+	<link rel="manifest" href="{{ asset('/manifest.json') }}">
      <!-- Fonts -->
       <link rel="dns-prefetch" href="//fonts.gstatic.com">
       <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -18,6 +21,15 @@
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <script src="//unpkg.com/alpinejs" defer></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-906TTT1GCQ"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-906TTT1GCQ');
+	</script>
 </head>
 
 <body class="bg-white h-full antialiased leading-relaxed ">
@@ -172,8 +184,15 @@
 
 <!-- footer section -->
 <div id="footer" class="flex mt-16 p-8 bg-gray-100 w-full rounded-lg text-center content-center items-center justify-center">
-    <p class="text-sm text-gray-600">Copyright (c) 2022 - All Rights Reserved</p>
+    <p class="text-sm text-gray-600">Populer Copyright (c) 2022 - All Rights Reserved</p>
 </div>
-
+<script src="{{ asset('/sw.js') }}"></script>
+<script>
+    if (!navigator.serviceWorker.controller) {
+        navigator.serviceWorker.register("/sw.js").then(function (reg) {
+            console.log("Service worker has been registered for scope: " + reg.scope);
+        });
+    }
+</script>
 </body>
 </html>

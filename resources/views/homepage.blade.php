@@ -9,7 +9,8 @@
         <!-- <p class="text-gray-700 mb-6 text-sm">Find Topics that matter, filter down and compare to find the best one's.</p> -->
       
         <div class="flex xl:w-1/2 lg:w-1/2">
-        <form class="flex border-2 border-gray-400 rounded-lg p-1 w-full" method="get" action="http://saas.test/search">
+        <form class="flex border-2 border-gray-400 rounded-lg p-1 w-full" method="get" action="/search">
+            @csrf
             <input type="text" name="term" class="px-2 outline-none w-full border-0" placeholder="Search anything..." required>
             <input type="submit" name="" value="Search" class="border-0 bg-gray-800 text-white p-1 px-2 rounded-lg hover:bg-indigo-600 outline-none cursor-pointer">
             

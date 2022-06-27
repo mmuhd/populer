@@ -1,0 +1,17 @@
+{
+    "name": "Populer - Most Populer Topics in Nigeria",
+    "short_name": "Populer",
+    "start_url": "/index.php",
+    "background_color": "#fefefe",
+    "description": "Populer - Most Populer Topics in Nigeria",
+    "display": "fullscreen",
+    "theme_color": "#fefefe",
+    "icons": [
+        {
+            "src": "/favicons/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}

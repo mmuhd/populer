@@ -26,7 +26,7 @@ class TopicController extends Controller
          // $topics = Topic::with('user')->with('category')
          // ->with('upvotes')->with('reviews')->paginate(10)->all();
         //$topics = Topic::paginate(10)->all();
-        $topics = Category::with('topics.upvotes')->with('topics.reviews')->with('topics.user')->paginate(3)->all()->get()->sortByDesc('topics.upvotes');
+        $topics = Category::with('topics.upvotes')->with('topics.reviews')->with('topics.user')->paginate(5)->all();
         //dd($topics);
         return view('homepage', compact('topics'));
     }
